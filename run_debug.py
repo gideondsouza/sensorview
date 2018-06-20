@@ -1,0 +1,4 @@
+from sensorapp import app 
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=51000, debug=True)
