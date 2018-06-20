@@ -15,5 +15,5 @@ def display_books():
         }
 
     # passing data to the template
-    return render_template("books.htm", books=books)
+    return render_template("home.html", books=books)
 
