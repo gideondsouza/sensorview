@@ -1,0 +1,8 @@
+
+
+I use Flask and the Blueprint modules as described here :
+https://damyanon.net/post/flask-series-structure/
+to modularize the app.
+
+I also use the mysqlclient from pip to connect to the db.
+ 
