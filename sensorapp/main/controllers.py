@@ -1,19 +1,35 @@
+import logging
 from flask import Blueprint, render_template
+import MySQLdb
+import MySQLdb.cursors
+from pprint import pprint
 
+import sys
+import json 
 
 main = Blueprint('main', __name__)
 
 
-@main.route('/')
+#@main.route('/')
 def index():
     return "Main"
 
-@main.route('books/')
+@main.route('/')
 def display_books():
-    books = {
-        "A": "Gideon D",
-        }
+#import _mysql.cursors
+    db=MySQLdb.connect(host="localhost", user="root", passwd="amsterdam678", 
+    db="dataloggerDB", cursorclass=MySQLdb.cursors.DictCursor)
+    c = db.cursor()
+    c.execute("SELECT id, logtime, sensorID,messwert  FROM dataloggerDB.messwerteTBL WHERE 1")
 
-    # passing data to the template
-    return render_template("home.html", books=books)
+    R = c.fetchall()
+    #pprint(R)
+    c.close()
+    return render_template("home.html", the_data=list(R))
+    
+@main.route('api/data/')
+def get_sensordata():
+    dat= []
+    return dat
+
 
